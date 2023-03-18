@@ -19,6 +19,7 @@ object Task2a extends App {
   println(positiveDef(-2))
 
   val neg: (String => Boolean) => (String => Boolean) = f => (s => !f(s))
+  def negDef(f: String => Boolean): (String => Boolean) = !f(_)
 
   val empty: String => Boolean = _ == "" // predicate on strings
   val notEmpty = neg(empty) // which type of notEmpty? (String => Boolean)
@@ -28,5 +29,24 @@ object Task2a extends App {
   println(notEmpty("foo")) // true
   println(notEmpty ("")) // false
   println(notEmpty ("foo") && !notEmpty("")) // true.. a comprehensive test
+
+  val notEmptyWithNegDef = negDef(empty) // which type of notEmpty? (String => Boolean)
+
+  println(notEmptyWithNegDef("foo")) // true
+  println(notEmptyWithNegDef("")) // false
+  println(notEmptyWithNegDef("foo") && !notEmpty("")) // true.. a comprehensive test
+
+  def genericNeg[A](a: A => Boolean): (A => Boolean) = !a(_)
+
+  val greaterThanTen: Int => Boolean = x => x match
+    case x if x > 10 => true
+    case _ => false
+
+  val notGreaterThanTen: Int => Boolean = (genericNeg(greaterThanTen))
+
+  println(greaterThanTen(11)) // true
+  println(greaterThanTen(-5)) // false
+  println(notGreaterThanTen(20)) //false
+  println(notGreaterThanTen(1)) //true
 
 }
