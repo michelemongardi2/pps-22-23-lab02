@@ -53,4 +53,14 @@ object Task2b extends App {
   println(differentP3(8)(9)(9)) //true
   println(differentP4(6, 7, 8)) //false
 
+  def compose(f: Int => Int, g: Int => Int): (Int => Int) = x => f(g(x))
+  compose(_ - 1, _ * 2)(5) // 9
+
+  def genericCompose[A, B, C](f: B => C, g: A => B): A => C = x => f(g(x))
+
+  val addOne: Int => Int = x => x + 1
+  val multiplyTwo: Int => Int = x => x * 2
+
+  val composedFunction: Int => Int = genericCompose(addOne, multiplyTwo)
+  println(composedFunction(5)) // 11
 }
