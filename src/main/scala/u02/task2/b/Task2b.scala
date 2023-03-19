@@ -5,7 +5,7 @@ object Task2b extends App {
   val p1: (Int, Int) => (Int => Boolean) = (y, z) => ({
     case x if ((x <= y) && (y == z)) => true;
     case _ => false
-  } )
+  })
 
   val p2: (Int, Int, Int) => Boolean = (x, y, z) => x match
     case x if ((x <= y) && (y == z)) => true
@@ -22,7 +22,7 @@ object Task2b extends App {
   println(p2(10, 2, 2)) //false
   println(p2(5, 10, 20)) //false
 
-  def p3(x: Int)(y: Int)(z:Int): Boolean = x match
+  def p3(x: Int)(y: Int)(z: Int): Boolean = x match
     case x if ((x <= y) && (y == z)) => true
     case _ => false
 
@@ -40,4 +40,17 @@ object Task2b extends App {
   println(p4(5, 10, 10)) //true
   println(p4(10, 2, 2)) //false
   println(p4(5, 10, 20)) //false
+
+  println("Another way to do the things")
+
+  val differentP1: Int => (Int => (Int => Boolean)) = x => (y => (z => ((x <= y) && (y == z))))
+  val differentP2: (Int, Int, Int) => Boolean = (x, y, z) => x <= y && y == z
+  def differentP3(x: Int)(y: Int)(z: Int): Boolean = ((x <= y) && (y == z))
+  def differentP4(x: Int, y: Int, z: Int): Boolean = ((x <= y) && (y == z))
+
+  println(differentP1(5)(7)(7)) //true
+  println(differentP2(1, 2, 2)) //true
+  println(differentP3(8)(9)(9)) //true
+  println(differentP4(6, 7, 8)) //false
+
 }
