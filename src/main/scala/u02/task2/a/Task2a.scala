@@ -1,4 +1,4 @@
-package u02.task2
+package u02.task2.a
 
 object Task2a extends App {
 
