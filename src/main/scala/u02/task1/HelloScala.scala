@@ -1,4 +1,4 @@
-package task1
+package u02.task1
 
 object HelloScala extends App {
 
