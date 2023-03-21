@@ -30,7 +30,6 @@ object Task2b extends App {
     case x if ((x <= y) && (y == z)) => true
     case _ => false
 
-
   println("******** Task2b CurriedMethod) ********")
   println(p3(1)(2)(2)) //true
   println(p3(9)(8)(8)) //false
