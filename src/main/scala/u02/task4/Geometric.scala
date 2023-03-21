@@ -42,6 +42,6 @@ object Geometric extends App {
   println(contains(rectangle(25, 15),(2, 0))) //true
   println(contains(Circle(10.0), (20, 30))) //false
   println(contains(Square(12), (-5, 0))) //false
-  println(contains(Square(20), (8, 10))) //false
+  println(contains(Square(20), (8, 10))) //true
 }
 
