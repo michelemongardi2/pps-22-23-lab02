@@ -33,4 +33,51 @@ object Option extends App {
   println("****** Test Fold ******")
   println(fold(Some(5))(1)(_ + 1)) // 6
   println(fold(None[Int]())(1)(_ + 1)) // 1
+
+  println("****** A Challeng - Slide 48 02fp ******")
+
+  /**
+   * Implement a method that takes an Optional[Int] and doubles its
+   * content (if not empty)
+   */
+
+  def doubleOpt(opt: Option[Int]): Option[Int] = opt match
+    case None() => None()
+    case Some(a) => Some(a*2)
+
+  println("****** Double Opt ******")
+  println(doubleOpt(Some(10))) //20
+  println(doubleOpt(Some(2))) //4
+  println(doubleOpt(None())) //None
+
+  /**
+   * Implement a method that takes an Optional[Boolean] and invert
+   * its value (if not empty)
+   */
+
+  def negOpt(opt: Option[Boolean]): Option[Boolean] = opt match
+    case None() => None()
+    case Some(a) => Some(!a)
+
+  println("****** Neg Opt ******")
+  println(negOpt(Some(true))) //false
+  println(negOpt(Some(false))) //true
+  println(negOpt(None())) //None
+
+  /**
+   * How would you write a generalisation of the two?
+   */
+
+  def doubleOptDRY(opt: Option[Int]): Option[Int] = transformOpt(opt)(_ * 2)
+
+  def negOptDRY(opt: Option[Boolean]): Option[Boolean] = transformOpt(opt)(!_)
+
+  def transformOpt[A](opt: Option[A])(f: A => A): Option[A] = opt match
+      case None() => None()
+      case Some(a) => Some(f(a))
+
+  println("****** Generalized Opt ******")
+  println(doubleOptDRY(Some(25))) //50
+  println(negOptDRY(Some(false))) //true
+  println(transformOpt(Some(5))(_+1)) //6
 }
